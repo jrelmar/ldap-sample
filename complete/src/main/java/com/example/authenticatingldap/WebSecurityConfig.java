@@ -13,7 +13,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.anyRequest().fullyAuthenticated()
+				.anyRequest()
+				.fullyAuthenticated()
 				.and()
 			.formLogin();
 	}
@@ -23,9 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 			.ldapAuthentication()
 				.userDnPatterns("uid={0},ou=people")
-				.groupSearchBase("ou=groups")
+				.groupSearchBase("ou=people")
 				.contextSource()
-					.url("ldap://localhost:8389/dc=springframework,dc=org")
+					.url("ldap://localhost:8389/dc=mycompany,dc=com")
 					.and()
 				.passwordCompare()
 					.passwordEncoder(new LdapShaPasswordEncoder())
